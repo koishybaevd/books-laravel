@@ -1,8 +1,6 @@
 <?php
 
-Route::get('/', function () {
-    return redirect()->route('login');
-});
+Route::get('/', 'AuthorController@index');
 
 Route::group(['prefix' => 'admin'], function() {
     // Authentication Routes...
