@@ -25,7 +25,7 @@
                 <li class="list-group-item">
                     <p class="h5">{{ $author->name }} {{ $author->surname }}:</p>
                     @foreach ($author->books as $book)
-                    <p>{{ $book->title }}</p>
+                    <p class="mb-1">{{ $book->title }}</p>
                     @endforeach
                 </li>
                 @endforeach
