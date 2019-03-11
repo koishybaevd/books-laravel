@@ -86,6 +86,8 @@ class AuthorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Author::destroy($id);
+
+        return back();
     }
 }
