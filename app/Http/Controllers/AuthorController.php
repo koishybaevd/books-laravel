@@ -30,7 +30,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        return view('authors.create');
     }
 
     /**
@@ -41,7 +41,17 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'surname' => 'required|max:255'
+        ]);
+
+        Author::create([
+            'name' => request('name'),
+            'surname' => request('surname')
+        ]);
+
+        return redirect('admin/dashboard');
     }
 
     /**
@@ -50,9 +60,9 @@ class AuthorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Author $author)
     {
-        //
+        return view('authors.show', compact('author'));
     }
 
     /**
@@ -63,7 +73,9 @@ class AuthorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $author = Author::find($id);
+
+        return view('authors.edit', compact('author'));
     }
 
     /**
@@ -75,7 +87,21 @@ class AuthorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'surname' => 'required|max:255'
+        ]);
+
+        $author = Author::find($id);
+
+        $author->update([
+            'name' => request('name'),
+            'surname' => request('surname')
+        ]);
+
+        $author->save();
+
+        return redirect('admin/dashboard');
     }
 
     /**
