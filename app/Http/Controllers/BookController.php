@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Book;
+use App\Author;
 
 class BookController extends Controller
 {
@@ -28,7 +29,9 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('books.create');
+        $authors = Author::all();
+
+        return view('books.create', compact('authors'));
     }
 
     /**
@@ -45,7 +48,7 @@ class BookController extends Controller
             'author_surname' => 'required|max:255'
         ]);
 
-        $author = \App\Author::firstOrCreate(['name' => request('author_name'), 'surname' => request('author_surname')]);
+        $author = Author::firstOrCreate(['name' => request('author_name'), 'surname' => request('author_surname')]);
         
         Book::create([
             'title' => request('title'),
@@ -61,9 +64,9 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Book $book)
+    public function show($id)
     {
-        return view('books.show', compact('book'));
+        //
     }
 
     /**
@@ -88,10 +91,6 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'title' => 'required|max:255'
-        ]);
-
         $book = Book::find($id);
         $book->title = request('title');
         $book->save();
@@ -107,7 +106,14 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
+        $book = Book::find($id);
+        $author = $book->author;
+
         Book::destroy($id);
+
+        if($author->books->count() == 0) {
+            Author::destroy($author->id);
+        }
 
         return back();
     }
