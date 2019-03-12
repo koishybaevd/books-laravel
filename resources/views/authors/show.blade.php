@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+<!-- Show author info -->
 @section('content')
 <div class="container">
     <div class="row">

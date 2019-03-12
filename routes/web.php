@@ -17,6 +17,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         'uses' => 'Admin\AdminController@index',
     ]);
 
+    // Resources routes
     Route::resources([
         'authors' => 'AuthorController',
         'books' => 'BookController'

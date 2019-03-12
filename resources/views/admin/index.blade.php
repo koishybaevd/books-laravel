@@ -7,11 +7,13 @@
             <ul class="list-group">
                 <li class="list-group-item bg-light font-weight-bold d-flex justify-content-between">
                     <span>Books ({{ $books->count() }})</span>
+                    <!-- Link to book create page -->
                     <a href="{{ route('books.create') }}" class="btn btn-sm btn-dark">
                         <i class="fas fa-plus mr-1"></i>
                         Add Book
                     </a>
                 </li>
+                <!-- Books list -->
                 @foreach ($books as $book)
                 <li class="list-group-item d-flex justify-content-between">
                     <span>{{ $book->title }}</span>
@@ -41,12 +43,14 @@
                 <li class="list-group-item bg-light font-weight-bold d-flex justify-content-between">
                     <span>Authors ({{ $authors->count() }})</span>
                     <div>
+                        <!-- Link to author create page -->
                         <a href="{{ route('authors.create') }}" class="btn btn-sm btn-dark">
                             <i class="fas fa-plus mr-1"></i>
                             Add Author
                         </a>
                     </div>
                 </li>
+                <!-- Authors list -->
                 @foreach ($authors as $author)
                 <li class="list-group-item d-flex justify-content-between">
                     <span>{{ $author->name }} {{ $author->surname }} ({{ $author->books->count() }})</span>

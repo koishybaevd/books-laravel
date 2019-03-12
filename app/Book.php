@@ -15,6 +15,7 @@ class Book extends Model
         'title', 'author_id'
     ];
 
+    // Relation with "Author" model
     public function author()
     {
         return $this->belongsTo('App\Author');

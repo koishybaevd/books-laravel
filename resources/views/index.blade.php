@@ -13,12 +13,14 @@
 
 <body>
     <div id="app">
+        <!-- Navbar -->
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">Books-Laravel</a>
             </div>
         </nav>
-
+    
+        <!-- List of authors -->
         <main>
             <ul class="list-group">
                 @foreach ($authors as $author)

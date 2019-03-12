@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+<!-- Show single book info -->
 @section('content')
 <div class="container">
     <div class="row">

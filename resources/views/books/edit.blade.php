@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+<!-- Edit book -->
 @section('content')
 
     <div class="container">
