@@ -1,18 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Book Api routes
+Route::group(['prefix' => 'v1'], function() {
+    Route::get('books/list', 'Api\v1\BookController@index');
+    Route::get('books/{book}', 'Api\v1\BookController@show');
+    Route::post('books/update', 'Api\v1\BookController@update');
+    Route::delete('books/{book}', 'Api\v1\BookController@destroy');
 });
